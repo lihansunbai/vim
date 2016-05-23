@@ -10,7 +10,6 @@ set selection=inclusive
 set wildmenu
 set mousemodel=popup
 
-
 au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
 au FileType css setlocal dict+=~/.vim/dict/css.dict
 au FileType c setlocal dict+=~/.vim/dict/c.dict
@@ -625,3 +624,9 @@ set term=xterm-256color
 set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
 " set guifont=Ubuntu\ Mono
 let g:Powerline_symbols = 'fancy'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SQLComplete & dbext插件设置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"PostgreSQL连接
+let g:dbext_default_profile_PG = 'type=PGSQL:user=postgres:passwd=postgres:host=localhost'
