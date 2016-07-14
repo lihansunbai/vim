@@ -1,0 +1,67 @@
+#鼠标滚轮可以用    
+set-window-option -g mode-mouse on
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+set -g mouse-select-window on
+
+#设置C-a为第二绑定键
+set -g prefix2 C-a                        # GNU-Screen compatible prefix
+bind C-a send-prefix -2
+
+#设置r快捷键，用于重新加载 tmux 的配置文件
+#bind r source-file ~/.tmux.conf; display "配置文件已重新加载！"
+ 
+# Rename your terminals
+# 重命名终端
+set -g set-titles on
+#set -g set-titles-string '#(whoami)::#h::#(curl ipecho.net/plain;echo)'
+ 
+# Status bar customization
+# 自定义状态条
+set -g status-utf8 on
+set -g status-bg black
+set -g status-fg white
+set -g status-interval 5
+set -g status-left-length 90
+set -g status-right-length 60
+set -g status-left "#[fg=Green]#(whoami)#[fg=white]::#[fg=blue](hostname -s)#"
+#set -g status-left "#[fg=Green]#(whoami)#[fg=white]::#[fg=blue](hostname -s)#[fg=white]::##[fg=yellow]#(curl ipecho.net/plain;echo)"
+ 
+set -g status-justify left
+set -g status-right '#[fg=Cyan]#S #[fg=white]%a %d %b %R'
+
+# Remap window(pane?) navigation to vim
+# 用 vim 的方式在窗格间移动光标
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+
+# resize pane
+#调整窗口大小
+bind -r ^k resizep -U 5 # upward (prefix Ctrl+k)
+bind -r ^j resizep -D 5 # downward (prefix Ctrl+j)
+bind -r ^h resizep -L 5 # to the left (prefix Ctrl+h)
+bind -r ^l resizep -R 5 # to the right (prefix Ctrl+l)
+
+#设置复制文本模式
+unbind [
+bind [ copy-mode
+bind -t vi-copy v begin-selection
+bind -t vi-copy y copy-selection
+unbind p
+bind p pasteb
+setw -g mode-keys vi      # Vi风格选择文本
+
+#启用Powerline
+#只需启用一次就可以注释掉
+source /usr/lib/python3.4/site-packages/powerline/bindings/tmux/powerline.conf
+set-option -g default-terminal "screen-256color"
+tmux_conf_theme=powerline
+tmux_conf_theme_prefix=enabled
+tmux_conf_theme_battery=enabled
+tmux_conf_battery_style=bar
