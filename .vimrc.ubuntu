@@ -9,6 +9,7 @@ set sm
 set selection=inclusive
 set wildmenu
 set mousemodel=popup
+set termguicolors
 
 au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
 au FileType css setlocal dict+=~/.vim/dict/css.dict
@@ -48,27 +49,27 @@ set rtp+=$GOROOT/misc/vim
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 显示相关  
+" 显示相关
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set cul                                                        "高亮光标所在行
 "set cuc
-set shortmess=atI                                              " 启动的时候不显示那个援助乌干达儿童的提示  
-set go=                                                        " 不要图形按钮  
+set shortmess=atI                                              " 启动的时候不显示那个援助乌干达儿童的提示
+set go=                                                        " 不要图形按钮
 colorscheme vim-material
 
-"set guifont=Courier_New:h10:cANSI                             " 设置字体  
-"autocmd InsertLeave * se nocul                                " 用浅色高亮当前行  
-autocmd InsertEnter * se cul                                   " 用浅色高亮当前行  
-set ruler                                                      " 显示标尺  
-set showcmd                                                    " 输入的命令显示出来，看的清楚些  
-"set whichwrap+=<,>,h,l                                        " 允许backspace和光标键跨越行边界(不建议)  
-set scrolloff=3                                                " 光标移动到buffer的顶部和底部时保持3行距离  
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
-set laststatus=2                                               " 启动显示状态行(1),总是显示状态行(2)  
-set foldenable                                                 " 允许折叠  
-set foldmethod=manual                                          " 手动折叠  
-set nocompatible                                               "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限  
+"set guifont=Courier_New:h10:cANSI                             " 设置字体
+"autocmd InsertLeave * se nocul                                " 用浅色高亮当前行
+autocmd InsertEnter * se cul                                   " 用浅色高亮当前行
+set ruler                                                      " 显示标尺
+set showcmd                                                    " 输入的命令显示出来，看的清楚些
+"set whichwrap+=<,>,h,l                                        " 允许backspace和光标键跨越行边界(不建议)
+set scrolloff=3                                                " 光标移动到buffer的顶部和底部时保持3行距离
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+set laststatus=2                                               " 启动显示状态行(1),总是显示状态行(2)
+set foldenable                                                 " 允许折叠
+set foldmethod=manual                                          " 手动折叠
+set nocompatible                                               "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
 
 
 " 显示中文帮助
@@ -133,7 +134,7 @@ set iskeyword+=_,$,@,%,#,-
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
-"rkdown to HTML  
+"rkdown to HTML
 nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
 nmap fi :!firefox %.html & <CR><CR>
 nmap \ \cc
@@ -147,18 +148,18 @@ nmap tt :%s/\t/    /g<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""新文件标题
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "") 
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+func SetTitle()
+	"如果文件类型为.sh文件
+	if &filetype == 'sh'
+		call setline(1,"\#!/bin/bash")
+		call append(line("."), "")
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
-	    call append(line(".")+1, "") 
+	    call append(line(".")+1, "")
 
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
@@ -167,13 +168,13 @@ func SetTitle()
 
 "    elseif &filetype == 'mkd'
 "        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: ") 
-		call append(line(".")+2, "	> Mail: ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
+	else
+		call setline(1, "/*************************************************************************")
+		call append(line("."), "	> File Name: ".expand("%"))
+		call append(line(".")+1, "	> Author: ")
+		call append(line(".")+2, "	> Mail: ")
+		call append(line(".")+3, "	> Created Time: ".strftime("%c"))
+		call append(line(".")+4, " ************************************************************************/")
 		call append(line(".")+5, "")
 	endif
 	if expand("%:e") == 'cpp'
@@ -195,7 +196,7 @@ func SetTitle()
 		call append(line(".")+7,"")
 	endif
 	"新建文件后，自动定位到文件末尾
-endfunc 
+endfunc
 autocmd BufNewFile * normal G
 
 
@@ -230,19 +231,19 @@ set mouse=v
 "set clipboard=unnamed
 
 "去空行
-nnoremap <F2> :g/^\s*$/d<CR> 
+nnoremap <F2> :g/^\s*$/d<CR>
 
-"比较文件  
-nnoremap <C-F2> :vert diffsplit 
+"比较文件
+nnoremap <C-F2> :vert diffsplit
 "nnoremap <Leader>fu :CtrlPFunky<Cr>
 "nnoremap <C-n> :CtrlPFunky<Cr>
 
-"列出当前目录文件  
+"列出当前目录文件
 map <F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
 
-"打开树状文件目录  
-map <C-F3> \be  
+"打开树状文件目录
+map <C-F3> \be
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 
 "C，C++ 按F5编译运行
@@ -255,8 +256,8 @@ func! CompileRunGcc()
 	elseif &filetype == 'cpp'
 		exec "!g++ % -o %<"
 		exec "!time ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
+	elseif &filetype == 'java'
+		exec "!javac %"
 		exec "!time java %<"
 	elseif &filetype == 'sh'
 		:!time bash %
@@ -404,14 +405,14 @@ set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 
-"代码补全 
-set completeopt=preview,menu 
+"代码补全
+set completeopt=preview,menu
 
-"允许插件  
+"允许插件
 "filetype plugin on
 
-"共享剪贴板  
-"set clipboard+=unnamed 
+"共享剪贴板
+"set clipboard+=unnamed
 
 "自动保存
 set autowrite
@@ -421,7 +422,7 @@ set magic                                                  " 设置魔术
 set guioptions-=T                                          " 隐藏工具栏
 set guioptions-=m                                          " 隐藏菜单栏
 ""set foldcolumn=0
-""set foldmethod=indent 
+""set foldmethod=indent
 ""set foldlevel=3
 
 " 不要使用vi的键盘模式，而是vim自己的
@@ -488,24 +489,24 @@ set scrolloff=3
 ""		return a:char
 ""	endif
 ""endfunction
-filetype plugin indent on 
+filetype plugin indent on
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CTags的设定  
+" CTags的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Tlist_Sort_Type = "name"    " 按照名称排序  
-let Tlist_Use_Right_Window = 1  " 在右侧显示窗口  
-let Tlist_Compart_Format = 1    " 压缩方式  
-let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer  
-""let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags  
-""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
+let Tlist_Sort_Type = "name"    " 按照名称排序
+let Tlist_Use_Right_Window = 1  " 在右侧显示窗口
+let Tlist_Compart_Format = 1    " 压缩方式
+let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
+""let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags
+""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树
 "let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
-"设置tags  
-set tags=tags;  
-set autochdir 
+"设置tags
+set tags=tags;
+set autochdir
 
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
@@ -514,21 +515,21 @@ map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tag list (ctags) 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-"默认打开Taglist 
-"let Tlist_Auto_Open=0 
-"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
-"let Tlist_Show_One_File = 1                                "不同时显示多个文件的tag，只显示当前文件的 
+" Tag list (ctags)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"默认打开Taglist
+"let Tlist_Auto_Open=0
+"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+"let Tlist_Show_One_File = 1                                "不同时显示多个文件的tag，只显示当前文件的
 "let Tlist_File_Fold_Auto_Close = 1
-"let Tlist_Exit_OnlyWindow = 1                              "如果taglist窗口是最后一个窗口，则退出vim 
+"let Tlist_Exit_OnlyWindow = 1                              "如果taglist窗口是最后一个窗口，则退出vim
 "let Tlist_Use_Right_Window = 1                             "在右侧窗口中显示taglist窗口
 
 " minibufexpl插件的一般设置
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1  
+let g:miniBufExplModSelTarget = 1
 "nmap tl :Tlist<cr>
 
 "python补全
@@ -548,9 +549,9 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set nocompatible               " be iMproved
 "filetype off                   " required!
 
@@ -558,7 +559,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -582,7 +583,11 @@ Bundle 'CaptureClipboard'
 Bundle 'ctrlp-modified.vim'
 Bundle 'last_edit_marker.vim'
 Bundle 'synmark.vim'
+" 使用SQLComplete 有可能需要配合 dbext.vim
+Bundle 'dbext.vim'
 Bundle 'SQLComplete.vim'
+" 使用特定支持postgresql的插件
+Bundle 'lifepillar/pgsql.vim'
 Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Vim-Script-Updater'
@@ -605,14 +610,7 @@ Bundle 'keith/tmux.vim'
 "Powerline插件
 Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
-"jslint已经被作者废弃了，不要再使用了
-"Bundle 'jslint.vim'
-"Bundle 'Python-mode-klen'
-"Bundle 'JavaScript-Indent'
-"Bundle 'Better-Javascript-Indentation'
 
-"Bundle 'FredKSchott/CoVim'
-"Bundle 'djangojump'
 " ...
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
@@ -636,13 +634,23 @@ let NERDTreeIgnore=['\.pyc']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Powerline插件设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set term=xterm-256color
+"set term=xterm-256color
 set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
 " set guifont=Ubuntu\ Mono
 let g:Powerline_symbols = 'fancy'
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SQLComplete & dbext插件设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "PostgreSQL连接
-let g:dbext_default_profile_PG = 'type=PGSQL:user=postgres:passwd=postgres:host=localhost'
+let g:dbext_default_profile_PG_test = 'type=PGSQL:user=postgres:passwd=postgres:host=localhost:port=1922'
+let g:dbext_default_profile_PG_carbon = 'type=PGSQL:user=postgres:passwd=postgres:host=localhost:port=1921'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PostgreSQL 语法高亮设置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:sql_type_default = 'pgsql'
+"let g:pgsql_pl = ['pgsql']
